@@ -45,10 +45,25 @@ if (fs.existsSync(apiSrc)) {
 }
 
 const documentsSrc = path.join(srcDir, 'documents');
-if (fs.existsSync(documentsSrc)) {
-  const documentsDest = path.join(destDir, 'documents');
-  fs.cpSync(documentsSrc, documentsDest, { recursive: true });
-  console.log('Copied documents/ -> www/documents/');
+const documentsDest = path.join(destDir, 'documents');
+const cppPdfName = 'Attractive_CPP_Programming_Notes.pdf';
+const cppPdfSrc = path.join(documentsSrc, cppPdfName);
+const cppPdfDest = path.join(documentsDest, cppPdfName);
+
+if (!fs.existsSync(cppPdfSrc)) {
+  throw new Error(`Required C++ notes PDF is missing: ${cppPdfSrc}`);
 }
+
+if (fs.existsSync(documentsSrc)) {
+  fs.cpSync(documentsSrc, documentsDest, { recursive: true });
+} else {
+  fs.mkdirSync(documentsDest, { recursive: true });
+}
+
+fs.copyFileSync(cppPdfSrc, cppPdfDest);
+if (!fs.existsSync(cppPdfDest) || fs.statSync(cppPdfDest).size === 0) {
+  throw new Error(`C++ notes PDF was not copied to the Vercel output: ${cppPdfDest}`);
+}
+console.log('Copied documents/ -> www/documents/');
 
 console.log('Mobile assets preparation complete!');

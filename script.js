@@ -381,6 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const notesButton = document.getElementById("open-notes");
     const notesDialog = document.getElementById("notes-dialog");
     const closeNotesButton = document.getElementById("close-notes");
+    const studyPdfLink = document.getElementById("study-pdf-link");
     const notePdfLinks = document.querySelectorAll(".notes-document-heading a");
     const notePdfViewers = document.querySelectorAll(".notes-pdf-viewer");
 
