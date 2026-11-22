@@ -8,6 +8,7 @@ if (!fs.existsSync(destDir)) {
   fs.mkdirSync(destDir, { recursive: true });
 }
 
+// --- Static web assets ---
 const filesToCopy = [
   'index.html',
   'manifest.json',
@@ -19,7 +20,6 @@ const filesToCopy = [
   'mode3.css',
   'notes-reader.css',
   'notes-gesture-reader.js',
-  'CSS - Copy.css',
   'icon.svg',
   'icon-192.png',
   'icon-512.png',
@@ -38,16 +38,15 @@ filesToCopy.forEach((file) => {
   }
 });
 
+// --- Documents (PDFs + notes-pages images) ---
 const documentsSrc = path.join(srcDir, 'documents');
 const documentsDest = path.join(destDir, 'documents');
-const cppPdfName = 'Attractive_CPP_Programming_Notes.pdf';
-const cppPdfSrc = path.join(documentsSrc, cppPdfName);
-const cppPdfDest = path.join(documentsDest, cppPdfName);
-
-if (!fs.existsSync(cppPdfSrc)) {
-  throw new Error(`Required C++ notes PDF is missing: ${cppPdfSrc}`);
+if (fs.existsSync(documentsSrc)) {
+  fs.cpSync(documentsSrc, documentsDest, { recursive: true });
+  console.log('Copied documents/ -> www/documents/');
 }
 
+// --- PDF.js library ---
 const libSrc = path.join(srcDir, 'lib');
 const libDest = path.join(destDir, 'lib');
 if (fs.existsSync(libSrc)) {
@@ -55,14 +54,14 @@ if (fs.existsSync(libSrc)) {
   console.log('Copied lib/ -> www/lib/');
 }
 
-// Also sync directly to Android assets if present
+// --- Android assets (only if native build is present) ---
 const androidAssets = path.join(__dirname, 'android', 'app', 'src', 'main', 'assets', 'public');
 if (fs.existsSync(androidAssets)) {
   fs.cpSync(destDir, androidAssets, { recursive: true });
   console.log('Synced www/ -> android assets/public/');
 }
 
-// Also sync directly to dist-desktop if present
+// --- Desktop app assets (only if Electron build is present) ---
 const desktopAppDir = path.join(__dirname, 'dist-desktop', 'Human AI Therapist-win32-x64', 'resources', 'app');
 if (fs.existsSync(desktopAppDir)) {
   filesToCopy.forEach((file) => {
