@@ -1,0 +1,49 @@
+# Node dependencies
+node_modules/
+package-lock.json
+
+# Desktop build output
+dist-desktop/
+
+# Mobile temporary web build
+www/
+
+# Android native build
+android/
+
+# Editor and Python cache
+.vscode/
+__pycache__/
+*.pyc
+
+# Local PDF and style generation scripts
+chapters_part1.py
+chapters_part2.py
+chapters_part3.py
+build_grammar_pdf.py
+generate_final_pdf.py
+check_palette_options.py
+check_theme_ids.py
+check_theme_markup.py
+update_theme_and_logo.py
+update_theme_css.py
+
+# CareerGuide local project files
+careerguide-website/
+careerguide-*
+english-communication-icon.svg
+English_Grammar_Complete_Master_Notes.pdf
+icon-concepts/
+
+# Temporary / Scratch files
+test.html
+* - Copy*
+*- Copy*
+
+# Logs & temp
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+.DS_Store
+Thumbs.db

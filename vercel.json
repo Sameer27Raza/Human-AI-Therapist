@@ -1,4 +1,3 @@
 {
-  "buildCommand": "node build-mobile-assets.js",
-  "outputDirectory": "www"
+  "cleanUrls": true
 }

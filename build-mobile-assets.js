@@ -17,6 +17,8 @@ const filesToCopy = [
   'haven-mark.png',
   'mode2.css',
   'mode3.css',
+  'notes-reader.css',
+  'notes-gesture-reader.js',
   'CSS - Copy.css',
   'icon.svg',
   'icon-192.png',
@@ -36,19 +38,42 @@ filesToCopy.forEach((file) => {
   }
 });
 
-// Copy api directory if present
-const apiSrc = path.join(srcDir, 'api');
-const apiDest = path.join(destDir, 'api');
-if (fs.existsSync(apiSrc)) {
-  fs.cpSync(apiSrc, apiDest, { recursive: true });
-  console.log('Copied api/ -> www/api/');
-}
-
 const documentsSrc = path.join(srcDir, 'documents');
 if (fs.existsSync(documentsSrc)) {
   const documentsDest = path.join(destDir, 'documents');
   fs.cpSync(documentsSrc, documentsDest, { recursive: true });
   console.log('Copied documents/ -> www/documents/');
+}
+
+const libSrc = path.join(srcDir, 'lib');
+const libDest = path.join(destDir, 'lib');
+if (fs.existsSync(libSrc)) {
+  fs.cpSync(libSrc, libDest, { recursive: true });
+  console.log('Copied lib/ -> www/lib/');
+}
+
+// Also sync directly to Android assets if present
+const androidAssets = path.join(__dirname, 'android', 'app', 'src', 'main', 'assets', 'public');
+if (fs.existsSync(androidAssets)) {
+  fs.cpSync(destDir, androidAssets, { recursive: true });
+  console.log('Synced www/ -> android assets/public/');
+}
+
+// Also sync directly to dist-desktop if present
+const desktopAppDir = path.join(__dirname, 'dist-desktop', 'Human AI Therapist-win32-x64', 'resources', 'app');
+if (fs.existsSync(desktopAppDir)) {
+  filesToCopy.forEach((file) => {
+    const src = path.join(srcDir, file);
+    const dest = path.join(desktopAppDir, file);
+    if (fs.existsSync(src)) fs.copyFileSync(src, dest);
+  });
+  if (fs.existsSync(documentsSrc)) {
+    fs.cpSync(documentsSrc, path.join(desktopAppDir, 'documents'), { recursive: true });
+  }
+  if (fs.existsSync(libSrc)) {
+    fs.cpSync(libSrc, path.join(desktopAppDir, 'lib'), { recursive: true });
+  }
+  console.log('Synced files -> dist-desktop resources/app/');
 }
 
 console.log('Mobile assets preparation complete!');
