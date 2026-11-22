@@ -39,10 +39,13 @@ filesToCopy.forEach((file) => {
 });
 
 const documentsSrc = path.join(srcDir, 'documents');
-if (fs.existsSync(documentsSrc)) {
-  const documentsDest = path.join(destDir, 'documents');
-  fs.cpSync(documentsSrc, documentsDest, { recursive: true });
-  console.log('Copied documents/ -> www/documents/');
+const documentsDest = path.join(destDir, 'documents');
+const cppPdfName = 'Attractive_CPP_Programming_Notes.pdf';
+const cppPdfSrc = path.join(documentsSrc, cppPdfName);
+const cppPdfDest = path.join(documentsDest, cppPdfName);
+
+if (!fs.existsSync(cppPdfSrc)) {
+  throw new Error(`Required C++ notes PDF is missing: ${cppPdfSrc}`);
 }
 
 const libSrc = path.join(srcDir, 'lib');

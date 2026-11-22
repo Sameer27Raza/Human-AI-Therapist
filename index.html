@@ -66,6 +66,67 @@
     </nav>
 </header>
 
+<dialog class="notes-dialog" id="notes-dialog" aria-labelledby="notes-heading">
+    <div class="notes-dialog-header">
+        <div class="notes-dialog-title">
+            <span class="notes-title-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 3.75h7l4 4v12.5H7a2 2 0 0 1-2-2v-12.5a2 2 0 0 1 2-2Z"/>
+                    <path d="M14 3.75v4h4M8.5 12h7M8.5 15.5h7"/>
+                </svg>
+            </span>
+            <div>
+                <p class="notes-eyebrow">YOUR STUDY LIBRARY</p>
+                <h2 id="notes-heading">Notes &amp; Documents</h2>
+                <p class="notes-dialog-subtitle">Open and review your saved study material.</p>
+            </div>
+        </div>
+        <button type="button" class="notes-close-button" id="close-notes" aria-label="Close notes">&times;</button>
+    </div>
+    <article class="notes-document">
+        <div class="notes-document-heading">
+            <div>
+                <h3>Statistics Notes — Chapters 1–13 with Handwritten Notes</h3>
+                <p>PDF document</p>
+            </div>
+            <a id="study-pdf-link" href="documents/statistics-notes-chapter-ordered-v2.pdf" target="_blank" rel="noopener">
+                Open PDF <span aria-hidden="true">↗</span>
+            </a>
+        </div>
+        <div class="notes-pdf-viewer" id="study-pdf-viewer">
+            <iframe
+                src="documents/statistics-notes-chapter-ordered-v2.pdf"
+                title="Statistics notes — Chapters 1–13"
+                loading="lazy">
+                <p>Your browser can’t display this PDF.
+                    <a href="documents/statistics-notes-chapter-ordered-v2.pdf">Open the notes PDF</a>.
+                </p>
+            </iframe>
+        </div>
+    </article>
+    <article class="notes-document">
+        <div class="notes-document-heading">
+            <div>
+                <h3>C++ Programming Basics — 30 Original Pages</h3>
+                <p>PDF document · Handwritten class notes</p>
+            </div>
+            <a href="documents/Attractive_CPP_Programming_Notes.pdf" target="_blank" rel="noopener">
+                Open PDF <span aria-hidden="true">↗</span>
+            </a>
+        </div>
+        <div class="notes-pdf-viewer">
+            <iframe
+                src="documents/Attractive_CPP_Programming_Notes.pdf"
+                title="C++ Programming Basics — 30-page handwritten notes"
+                loading="lazy">
+                <p>Your browser can’t display this PDF.
+                    <a href="documents/Attractive_CPP_Programming_Notes.pdf">Open the C++ notes PDF</a>.
+                </p>
+            </iframe>
+        </div>
+    </article>
+</dialog>
+
 
 <!-- HERO -->
 
